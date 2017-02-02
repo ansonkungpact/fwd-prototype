@@ -667,6 +667,8 @@ ul.chat-list .timestamp {
 
 /* line 925, custom.scss */
 .chat-window {
+  max-height: 400px;
+  overflow: scroll;
   max-width: 1024px;
   width: 100%;
   height: 100%;
