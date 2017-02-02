@@ -44,9 +44,9 @@ function init() {
 	}
 
 	//add copyright
-	$(".copyright").append('<div class="row"> '+
-                            '<div class="col-xs-12"> '+ copyright_link +
-                            '</div>');
+	// $(".copyright").append('<div class="row"> '+
+ //                            '<div class="col-xs-12"> '+ copyright_link +
+ //                            '</div>');
 
 	//textarea init - apply autosize plugin and add return key listener
 	autosize($('textarea'));
