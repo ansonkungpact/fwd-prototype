@@ -254,7 +254,7 @@ ul.chat-list li.chat-bubble.user::before {
   position: absolute;
   top: 0;
   right: 0;
-  background: #0f748f;
+  background: #f68b1f;
   -webkit-border-bottom-right-radius: 10px;
   border-bottom-right-radius: 10px;
   -webkit-border-top-right-radius: 10px;
@@ -271,7 +271,7 @@ ul.chat-list li.chat-bubble.user::before {
 ul.chat-list li.chat-bubble.user:last-child .chat-bubble-tail {
   width: 10px;
   height: 10px;
-  background: #0f748f;
+  background: #f68b1f;
   position: absolute;
   bottom: -10px;
   right: -8px;
@@ -519,14 +519,14 @@ ul.chat-list .timestamp {
   width: 80px;
   margin: 10px 20px 0 0;
   padding: 0;
-  color: #0f748f;
+  color: #f68b1f;
   text-transform: uppercase;
   cursor: pointer;
   font-weight: 500;
   text-align: center;
   float: right;
   background: none;
-  border: 2px solid #0f748f;
+  border: 2px solid #f68b1f;
   -webkit-border-radius: 50%;
   border-radius: 50%;
   background-clip: padding-box;
@@ -567,7 +567,7 @@ ul.chat-list .timestamp {
   -webkit-box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
   box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
-  border: 4px solid #0f748f;
+  border: 4px solid #f68b1f;
 }
 @media (max-width: 1023px) {
   /* line 815, custom.scss */
@@ -583,7 +583,7 @@ ul.chat-list .timestamp {
     -webkit-box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
     -moz-box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
     box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
-    border: 2px solid #0f748f;
+    border: 2px solid #f68b1f;
   }
 }
 
@@ -1131,7 +1131,7 @@ table.baggage-calc-response-2 .values td {
 .btn.btn-secondary {
   background: white;
   border: 1px solid #c6c2c1;
-  color: #0f748f;
+  color: #f68b1f;
 }
 /* line 1365, custom.scss */
 .btn.btn-secondary:hover, .btn.btn-secondary:focus {
