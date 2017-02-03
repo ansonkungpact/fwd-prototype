@@ -1295,6 +1295,7 @@ li.chat-bubble.vera.widget.faq .widget-feedback .btn-secondary {
 }
 .chatbot.chatbot-zoom .chat-window {
   padding-bottom: 125px;
+  max-height: 100%!important;
 }
 
 .chatbot.chatbot-zoom .chat-footer {
@@ -1304,6 +1305,7 @@ li.chat-bubble.vera.widget.faq .widget-feedback .btn-secondary {
 @media (min-width: 719px) {
   .chatbot.chatbot-zoom .chat-window {
     height: 400px;
+        max-height: 400px!important;
     padding-bottom: 0;
   }
   .chatbot.chatbot-zoom {
