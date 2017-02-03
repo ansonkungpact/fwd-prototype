@@ -351,7 +351,7 @@ function makeChatBubble (chat_message, chat_message_timestamp, chat_window, user
 		}
 		
 		if(showDoc){
-			var bubble_content = '<li ' + chat_bubble_id + 'class="chat-bubble key-response ' + user + ' ' + custom_class + '" style="display: none;"> <span class="sr-only">' + sr_users[user] + ': </span>' + 
+			var bubble_content = '<h2>Doctor list</h2><li ' + chat_bubble_id + 'class="chat-bubble key-response ' + user + ' ' + custom_class + '" style="display: none;"> <span class="sr-only">' + sr_users[user] + ': </span>' + 
 
 				'<style>'+
 				'table {'+
@@ -406,11 +406,7 @@ function makeChatBubble (chat_message, chat_message_timestamp, chat_window, user
 				'<td>Endocrinology, Diabetes and Metabolism</td>'+
 				'<td>Shop No. 149, Hip Wo Street, Kwun Tong, Kowloon</td>'+
 				'</tr>'+
-				'</table>'+
-
-		
-			'<div class="timestamp"><time datetime="' + chat_message_timestamp + '">' + chat_message_timestamp +  '</div>' +
-			'<div class="chat-bubble-tail"></div></li>';
+				'</table>';
 		}else{
 			var bubble_content = '<li ' + chat_bubble_id + 'class="chat-bubble ' + user + ' ' + custom_class + '" style="display: none;"> <span class="sr-only">' + sr_users[user] + ': </span>' + chat_message + '<div class="timestamp"><time datetime="' + chat_message_timestamp + '">' + chat_message_timestamp +  '</div><div class="chat-bubble-tail"></div></li>';
 		}
@@ -418,9 +414,12 @@ function makeChatBubble (chat_message, chat_message_timestamp, chat_window, user
 			$('.vera-message-audio')[0].play();
 		}
 	 }
-
+if(showDoc) {
+	$('.dynamic-content').html(bubble_content).find('.chat-bubble').fadeIn('slow');
+} else {
 	$(".chat-block").last().append(bubble_content).find('.chat-bubble').fadeIn('slow');
 	$(chat_window).scrollTop($(chat_window)[0].scrollHeight);
+}
 }
 
 function feedbackHandler(target) {

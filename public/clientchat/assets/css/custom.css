@@ -1282,7 +1282,9 @@ li.chat-bubble.vera.widget.faq .widget-feedback .btn-secondary {
     margin: 0 auto 5px auto;
   }
 }
-
+.chatbot {
+  background: #fff;
+}
 .chatbot.chatbot-zoom {
   position: fixed;
   top: 0;
@@ -1375,4 +1377,11 @@ body.show-overlay {
 }
 .full-screen a:hover, .full-screen a:focus, .full-screen a:active {
   color: #f65e1b;
+}
+li.chat-bubble {
+  list-style: none;
+}
+
+.dynamic-content {
+  margin-top: 20px;
 }

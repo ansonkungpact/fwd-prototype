@@ -273,6 +273,7 @@ var cCalculatorModule = function (){
 				console.log("intent:::"+intent);
 				if (intent == "medicalIntent") {
 					isCalculationInProgress = true;
+					console.log('okoko');
 					calculateInformation(question,classifierResponse);
 				} else if(intent == "greetings"){
 					callback("Hello");
