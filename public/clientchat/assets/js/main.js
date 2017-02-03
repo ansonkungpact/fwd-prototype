@@ -652,3 +652,27 @@ function readMoreHandler(toggle_target) {
 		//SCROLL TO TOP
 	}
 }
+
+$('.full-screen .fa-times').on('click', function() {
+	$('body').removeClass('show-overlay');
+	$('#black-overlay').fadeOut();
+	$('.chatbot').removeClass('chatbot-zoom');
+	$('.full-screen .fa-times').hide();
+	$('.full-screen .fa-arrows-alt').show();
+});
+
+$('.full-screen .fa-arrows-alt').on('click', function() {
+	$('body').addClass('show-overlay');
+	$('#black-overlay').fadeIn();
+	$('.chatbot').addClass('chatbot-zoom');
+	$('.chatbot').hide();
+	$('.chatbot').fadeIn();
+	$('.full-screen .fa-times').show();
+	$('.full-screen .fa-arrows-alt').hide();
+});
+$('.chatbot textarea').on('focus', function() {
+ // $('.chatbot').addClass('chatbot-focus');
+});
+$('.chatbot textarea').on('focusout', function() {
+ // $('.chatbot').removeClass('chatbot-focus');
+});
