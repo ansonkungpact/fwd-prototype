@@ -1293,6 +1293,9 @@ li.chat-bubble.vera.widget.faq .widget-feedback .btn-secondary {
   margin-left: -14px;
   height: 100%;
 }
+.chatbot.chatbot-zoom .chat-window {
+  padding-bottom: 125px;
+}
 
 .chatbot.chatbot-zoom .chat-footer {
   position: fixed;
@@ -1301,6 +1304,7 @@ li.chat-bubble.vera.widget.faq .widget-feedback .btn-secondary {
 @media (min-width: 719px) {
   .chatbot.chatbot-zoom .chat-window {
     height: 400px;
+    padding-bottom: 0;
   }
   .chatbot.chatbot-zoom {
     top: 150px;
