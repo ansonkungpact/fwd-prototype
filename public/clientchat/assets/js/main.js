@@ -416,6 +416,8 @@ function makeChatBubble (chat_message, chat_message_timestamp, chat_window, user
 	 }
 if(showDoc) {
 	$('.dynamic-content').html(bubble_content).find('.chat-bubble').fadeIn('slow');
+
+	$('.dynamic-content').addClass('show-content');
 } else {
 	$(".chat-block").last().append(bubble_content).find('.chat-bubble').fadeIn('slow');
 	$(chat_window).scrollTop($(chat_window)[0].scrollHeight);

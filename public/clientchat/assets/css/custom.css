@@ -490,13 +490,12 @@ ul.chat-list .timestamp {
 /* line 794, custom.scss */
 .chat-footer-message-entry {
   height: auto;
-  margin: 30px 0px 10px 20px;
-  border: 0;
+      border: 0;
+    height: 30px;
 }
 @media (max-width: 719px) {
   /* line 794, custom.scss */
   .chat-footer-message-entry {
-    margin: 20px 0px 10px 10px;
     font-size: 1rem;
   }
 }
@@ -510,12 +509,16 @@ ul.chat-list .timestamp {
   resize: none;
   -ms-overflow-style: -ms-autohiding-scrollbar;
   display: block;
+  margin-top: 10px;
+  margin-left: 10px;
+      max-height: 28px!important;
+    max-width: 220px!important;
 }
 
 /* line 815, custom.scss */
 .btn.chat-send {
   display: inline;
-  height: 80px;
+  height: 30px;
   width: 80px;
   margin: 10px 20px 0 0;
   padding: 0;
@@ -527,8 +530,6 @@ ul.chat-list .timestamp {
   float: right;
   background: none;
   border: 2px solid #f68b1f;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
   background-clip: padding-box;
   /* stops bg color from leaking outside the border: */
   -webkit-transition: 0.25s;
@@ -667,7 +668,9 @@ ul.chat-list .timestamp {
 
 /* line 925, custom.scss */
 .chat-window {
-  max-height: 400px;
+  z-index: -1;
+    position: relative;
+  max-height: 300px;
   overflow: scroll;
   max-width: 1024px;
   width: 100%;
@@ -700,7 +703,9 @@ ul.chat-list .timestamp {
   display: none;
 }
 .chat-header {
-  padding: 10px 15px;
+  padding: 0 10px 15px 10px;
+  box-shadow: 1px 3px 5px #aab2bd;
+    height: 35px;
 }
 
 /* line 984, custom.scss */
@@ -1284,6 +1289,13 @@ li.chat-bubble.vera.widget.faq .widget-feedback .btn-secondary {
 }
 .chatbot {
   background: #fff;
+      position: fixed;
+    z-index: 999;
+    bottom: 0;
+    right: 20px;
+    margin-bottom:0!important;
+    width: 330px;
+    padding: 0!important;
 }
 .chatbot.chatbot-zoom {
   position: fixed;
@@ -1297,6 +1309,7 @@ li.chat-bubble.vera.widget.faq .widget-feedback .btn-secondary {
 }
 .chatbot.chatbot-zoom .chat-window {
   padding-bottom: 125px;
+  margin-top: 6px;
   max-height: 100%!important;
 }
 
@@ -1383,5 +1396,20 @@ li.chat-bubble {
 }
 
 .dynamic-content {
+  display: none;
   margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.dynamic-content.show-content {
+  display: block;
+}
+.contact-form.hidden {
+  display:none;
+}
+.loading {
+      margin-left: 100px;
+}
+.loading.hidden {
+  display: none;
 }
