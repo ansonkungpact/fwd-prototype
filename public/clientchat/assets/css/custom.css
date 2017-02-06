@@ -1290,7 +1290,7 @@ li.chat-bubble.vera.widget.faq .widget-feedback .btn-secondary {
 .chatbot {
   background: #fff;
       position: fixed;
-    z-index: 999;
+    z-index: 9999;
     bottom: 0;
     right: 20px;
     margin-bottom:0!important;
@@ -1417,8 +1417,9 @@ li.chat-bubble {
 .chat-header {
   cursor: pointer;
 }
-.chat-header:hover {
-  background: #eeeeee;
+.chat-header {
+ background: #f68b1f;
+    color: white;
 }
 .chatbot-collapse .chat-window {
   display: none;
