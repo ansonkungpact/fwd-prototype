@@ -1296,6 +1296,7 @@ li.chat-bubble.vera.widget.faq .widget-feedback .btn-secondary {
     margin-bottom:0!important;
     width: 330px;
     padding: 0!important;
+    box-shadow: 0px 1px 8px #aab2bd!important;
 }
 .chatbot.chatbot-zoom {
   position: fixed;
@@ -1411,5 +1412,17 @@ li.chat-bubble {
       margin-left: 100px;
 }
 .loading.hidden {
+  display: none;
+}
+.chat-header {
+  cursor: pointer;
+}
+.chat-header:hover {
+  background: #eeeeee;
+}
+.chatbot-collapse .chat-window {
+  display: none;
+}
+.chatbot-collapse .chat-footer {
   display: none;
 }
