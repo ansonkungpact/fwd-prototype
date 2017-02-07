@@ -360,6 +360,7 @@ var cCalculatorModule = function (){
 						extractsFromQuestion.PHYSIOTHERAPIST_COVERAGE == "yes"){
 						showQuestion("RELEVANT_POLICY");
 						showQuestion("HEALTH_POLICY_OPTION");
+						showQuestion({"showHealth":true});
 						showQuestion("THANK_YOU");
 				}else if(extractsFromQuestion.QTAG1 == "outpatient" &&
 						extractsFromQuestion.QTAG2 == "specialist" &&

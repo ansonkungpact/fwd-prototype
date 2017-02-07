@@ -298,6 +298,7 @@ function makeChatBubble (chat_message, chat_message_timestamp, chat_window, user
 	 	var locationArray;
 	 	var content = '';
 	 	var showDoc = false;
+	 	var showHealth = false;
 
 	 	var veraGuessOd = false;
 
@@ -347,6 +348,9 @@ function makeChatBubble (chat_message, chat_message_timestamp, chat_window, user
 			}else if(entry == 'showDoc'){
 				console.log('comes here.............mikita:::: '+chat_message[entry]);
 				showDoc = true;
+			}else if(entry == 'showHealth'){
+				console.log('comes here.............mikita:::: '+chat_message[entry]);
+				showHealth = true;
 			}
 		}
 		
@@ -407,14 +411,18 @@ function makeChatBubble (chat_message, chat_message_timestamp, chat_window, user
 				'<td>Shop No. 149, Hip Wo Street, Kwun Tong, Kowloon</td>'+
 				'</tr>'+
 				'</table>';
-		}else{
+		}else if(showHealth){
+			var bubble_content = "<img src='assets/img/health.jpg' />";
+
+		}
+		else{
 			var bubble_content = '<li ' + chat_bubble_id + 'class="chat-bubble ' + user + ' ' + custom_class + '" style="display: none;"> <span class="sr-only">' + sr_users[user] + ': </span>' + chat_message + '<div class="timestamp"><time datetime="' + chat_message_timestamp + '">' + chat_message_timestamp +  '</div><div class="chat-bubble-tail"></div></li>';
 		}
 		if (user == "vera") {
 			$('.vera-message-audio')[0].play();
 		}
 	 }
-if(showDoc) {
+if(showDoc || showHealth) {
 	$('.dynamic-content').html(bubble_content).find('.chat-bubble').fadeIn('slow');
 
 	$('.dynamic-content').addClass('show-content');
