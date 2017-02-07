@@ -9,6 +9,9 @@ const QUESTIONS = {
 	"START_QUESTION": [
 		"How can I help you today?"
 	],
+	"RESTART_QUESTION": [
+		"What can I help you with?"
+	],
 	"ASK_FOR_COVERAGE":[
 		"What type of coverage would you like to inquire about? (Hospitalization, Outpatient, or Dental)"
 	],
@@ -36,7 +39,7 @@ const QUESTIONS = {
 		"Apologies, but I didn't quite understand that. I'll look into learning that phrase shortly."
 	],
 	"COVERAGE_DETAILS":[
-		"Great. Here are your coverage details for Specialist care: <br> Cover Limit: (HK$) 400 <br> Reimbursement: 100% <br> Network co-payment per visit: 0 <br> Max. no. of visits per policy year: 30"
+		"Here are your coverage details for Specialist care: <br> Cover Limit: (HK$) 400 <br> Reimbursement: 100% <br> Network co-payment per visit: 0 <br> Max. no. of visits per policy year: 30"
 	],
 	"POLICY_SUMMARY":[
 		"And for your policy, here is a summary of the benefits used and benefits remaining for this policy year: <br> No. of visits claimed: 8 <br> Max. no. of visits remaining: 22",
@@ -150,49 +153,7 @@ var cCalculatorModule = function (){
 		var sequence = require('sequence').Sequence.create();
 		sequence
 			.then(function(next) {
-				if (process.env.VERA_ENV == 'DEV') {
-					if((questionKey == "ASK_FOR_VALID_ORI_LOCATION" || questionKey == "DO_NOT_UNDERSTAND" 
-						|| questionKey == "ASK_FOR_VALID_DEST_LOCATION" || questionKey == "ASK_FOR_VALID_OD_LOCATION") && (currentQuestion != "LOCATION_CONFLICT")){
-						verifyQithKnowledgeBase(userInputQuestion,function(result){
-							if(result){
-
-								if (!extraDelay) {
-									extraDelay = 1;
-								}
-
-						        if (currentInputQuestion != lastInputQuestion) {
-						        	lastInputQuestion = currentInputQuestion;
-						        	delayAccumulated = 0;
-						        	delay = getRandomDelay(result) + extraDelay;
-						        }
-						        else {
-									delay = delayAccumulated + extraDelay; // for now, always add 100ms  
-						        }
-
-								delayAccumulated = delay;
-
-								fetchCorrectQuestion(result,delay);
-								displayNextPromptQuestion();
-							}else{
-								next();
-							}
-							
-						});
-					}else{
-						if(currentQuestion == "LOCATION_CONFLICT"){
-							if(questionKey == "ASK_FOR_VALID_ORI_LOCATION"){
-								questionKey = "ASK_FOR_POLICY_NUMBER";
-							}else if(questionKey == "ASK_FOR_VALID_DEST_LOCATION"){
-								questionKey = "ASK_FOR_TYPE_HEALTH_INSURANCE";
-							}
-						}
-						next();
-						
-					}
-				}else{
 					next();
-				}
-
 				})
 			.then(function(next) {
 				delay = fetchCorrectQuestion(questionKey,extraDelay);
@@ -273,7 +234,6 @@ var cCalculatorModule = function (){
 				console.log("intent:::"+intent);
 				if (intent == "medicalIntent") {
 					isCalculationInProgress = true;
-					console.log('okoko');
 					calculateInformation(question,classifierResponse);
 				} else if(intent == "greetings"){
 					callback("Hello");
@@ -335,7 +295,7 @@ var cCalculatorModule = function (){
 			
 			extractsFromQuestion.INTENT = "MEDICAL_INTENT";
 			callback("HAPPY_TO_HELP");
-			callback("COVERAGE_ENQUIRY");
+			extractionOfParameters(question,classifierResponse);
 		}else if(extractsFromQuestion.QTAG1 == null ||
 			extractsFromQuestion.QTAG2 == null ||
 			extractsFromQuestion.QTAG3 == null ||
@@ -367,8 +327,7 @@ var cCalculatorModule = function (){
 
 				if(extractsFromQuestion.RESTART != null && extractsFromQuestion.RESTART == 'yes'){
 					clearProfile();
-					extractsFromQuestion.INTENT = "MEDICAL_INTENT";
-					showQuestion("ASK_FOR_COVERAGE");
+					showQuestion("RESTART_QUESTION");
 					extractsFromQuestion.RESTART = '';
 				}else if(extractsFromQuestion.RESTART != null && extractsFromQuestion.RESTART == 'no'){
 					clearProfile();
@@ -477,6 +436,10 @@ var cCalculatorModule = function (){
 						if(entity == "medicalBenefit"){
 							if(entity == "medicalBenefit" && entities[i]['entity'] == "outpatient"){
 									extractsFromQuestion.QTAG1 = entities[i]['entity'];
+									break;
+							}else if(entity == "medicalBenefit" && entities[i]['entity'] == "specialist"){
+									extractsFromQuestion.QTAG1 = "outpatient";
+									extractsFromQuestion.QTAG2 = entities[i]['entity'];
 									break;
 							}else{
 								callback("DO_NOT_UNDERSTAND");
