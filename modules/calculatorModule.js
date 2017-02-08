@@ -503,7 +503,7 @@ var cCalculatorModule = function (){
 							var entity = entities[i]['type'];
 							console.log("GOT ENTTITY TYPE");
 							console.log("entity:::"+entity);
-							if(entity == "doc" && entities[i]['entity'] == 'diabetes'){
+							if(entity == "doc" && (entities[i]['entity'] == 'diabetes' || entities[i]['entity'] == 'metabolism')){
 								extractsFromQuestion.TYPE_OF_SPECIALIST = entities[i]['entity'];
 								break;
 							}
