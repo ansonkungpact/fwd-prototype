@@ -182,7 +182,7 @@ var cCalculatorModule = function (){
         }
 
 		delayAccumulated = delay;
-		delay = 1;
+		delay = 400;
 
 		if (responseCallback) {
 			responseCallback(question, delay);
