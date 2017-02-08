@@ -49,7 +49,7 @@ const QUESTIONS = {
 		"Would you like to search for any specialists in your area?"
 	],
 	"TYPE_OF_SPECIALIST":[
-		"Great. What type of Specialist are you looking for?"
+		"What type of Specialist are you looking for?"
 	],
 	"LIST_OF_DIABETES_DOC":[
 		"Sure. Here is the list of Endocrinologists ('Diabetes doctor') in your area:"
@@ -81,8 +81,7 @@ const QUESTIONS = {
 		"Do you want to ask another question?"
 	],
 	"THANK_YOU":[
-		"Thank you for chatting with us. See you next time!",
-		"If you have any question, you can ask me at any time!"
+		"What else can I help you with?"
 	],
 	"NO_PHYSIOTHERAPIST_COVERAGE":[
 		"I'm sorry, it appears you do not have Physiotherapist coverage in your policy."
@@ -183,6 +182,7 @@ var cCalculatorModule = function (){
         }
 
 		delayAccumulated = delay;
+		delay = 1;
 
 		if (responseCallback) {
 			responseCallback(question, delay);
@@ -359,9 +359,10 @@ var cCalculatorModule = function (){
 						extractsFromQuestion.QTAG2 == "physiotherapist" &&
 						extractsFromQuestion.PHYSIOTHERAPIST_COVERAGE == "yes"){
 						showQuestion("RELEVANT_POLICY");
-						showQuestion("HEALTH_POLICY_OPTION");
 						showQuestion({"showHealth":true});
-						showQuestion("THANK_YOU");
+						// TODO ANSON
+						//showQuestion("HEALTH_POLICY_OPTION");
+						showQuestion("RESTART");
 				}else if(extractsFromQuestion.QTAG1 == "outpatient" &&
 						extractsFromQuestion.QTAG2 == "specialist" &&
 						extractsFromQuestion.SPECIALIST_SEARCH == "yes" &&
@@ -497,11 +498,12 @@ var cCalculatorModule = function (){
 					console.log("currentQuestion:::"+currentQuestion);
 					if(currentQuestion == 'TYPE_OF_SPECIALIST'){
 						var entities = classifierResponse["entities"];
+						console.log(entities);
 						for(var i=0;i<entities.length;i++){
 							var entity = entities[i]['type'];
 							console.log("GOT ENTTITY TYPE");
 							console.log("entity:::"+entity);
-							if(entity == "doc"){
+							if(entity == "doc" && entities[i]['entity'] == 'diabetes'){
 								extractsFromQuestion.TYPE_OF_SPECIALIST = entities[i]['entity'];
 								break;
 							}
