@@ -5,6 +5,14 @@ var http = require('http').Server(app);
 var fs = require('fs');
 var moment = require('moment');
 
+var preAuth = require('http-auth');
+var basic = preAuth.basic({
+	realm: "Restricted Access! Please login to proceed"
+  }, function (username, password, callback) { 
+    callback( (username === "pactera" && password === "PACTERADEMO"));
+  }
+);
+
 var ExpressWaf = require('express-waf');
 var bodyParser = require('body-parser');
 
@@ -18,6 +26,7 @@ const INDEX = path.join(__dirname, '/public/clientchat/index-clientchat.html');
 const INDEXB = path.join(__dirname, '/public/app/login.html');
 
 const server = express()
+  .use(preAuth.connect(basic))
   .use(express.static('public/app/'))
   .get('/', function(req, res){
      res.sendFile(INDEXB);
