@@ -482,10 +482,18 @@ var cCalculatorModule = function (){
 			.then(function(next) {
 					console.log('2222');
 					if(currentQuestion == 'SPECIALIST_SEARCH'){
-						if(question == "yes" || question == "sure" || question == "ofcourse"){
-							extractsFromQuestion.SPECIALIST_SEARCH = "yes";
-						}else{
-							extractsFromQuestion.SPECIALIST_SEARCH = "no";
+
+						var entities = classifierResponse["entities"];
+						console.log(entities);
+						for(var i=0;i<entities.length;i++){
+							var entity = entities[i]['type'];
+							console.log("GOT ENTTITY TYPE");
+							console.log("entity:::"+entity);
+							if(entity == "positiveFeedback"){
+								extractsFromQuestion.SPECIALIST_SEARCH = "yes";
+							} else {
+								extractsFromQuestion.SPECIALIST_SEARCH = "no";
+							}
 						}
 						callbackFunc();
 					}else{
